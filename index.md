@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## Better for Seaching Tech
 
 You can use the [editor on GitHub](https://github.com/veeru538/Queries/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
 
