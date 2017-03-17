@@ -1,6 +1,24 @@
-theme: jekyll-theme-cayman
 title: [Linux Adventures]
 description: [Better to solve problem's]
-#show_downloads: ["false"]
+show_downloads: true
+baseurl: ""
+paginate:  1
+values:
+     layout: single
+	 
+#About/contact
+author:
+    name:  veerendra
+    url: http://nqueries.com
+    baseurl: ""
+	
+#Gems
 gems:
   - jekyll-seo-tag
+
+#theme: jekyll-theme-cayman
+#title: [Linux Adventures]
+#description: [Better to solve problem's]
+#show_downloads: ["false"]
+#gems:
+#  - jekyll-seo-tag
