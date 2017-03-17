@@ -74,7 +74,7 @@
 ~~~
 
 * To:
-~~~yml
+
     location / {
         index index.php index.html index.htm;
         try_files $uri $uri/ /index.php?$args;
@@ -90,7 +90,7 @@
     access_log off; log_not_found off; expires max;
     }
 
-~~~  
+ 
 To test naginx configuration:
 
     nginx -t 
