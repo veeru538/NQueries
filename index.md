@@ -4,7 +4,7 @@ You can use the [editor on GitHub](https://github.com/veeru538/Queries/edit/mast
 
 # Linux
 
-- [Ubuntu](url)
+- [Ubuntu](Ubuntu.md)
 - List
 
 # DataBases
