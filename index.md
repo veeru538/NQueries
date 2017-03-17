@@ -1,5 +1,5 @@
 
-[**AboutUs**](AboutUs.md)                    | [**Linux**](Ubuntu.md)                    |  [**DataBases**](Databases.md)          | [**Security**](Security.md)  
+[**AboutUs**](AboutUs.md)                    | [**Linux**](Linux.md)                    |  [**DataBases**](Databases.md)          | [**Security**](Security.md)  
 
 
 # _Better for Searching Tech_
