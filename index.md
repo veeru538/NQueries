@@ -1,4 +1,4 @@
-[Linux](Ubuntu.md)              |  [DataBases](Databases.md)          | Security |
+[**Linux**](Ubuntu.md)                    |  [**DataBases**](Databases.md)          | [**Security**](Security.md)  |
 
 
 ## _Better for Searching Tech_
