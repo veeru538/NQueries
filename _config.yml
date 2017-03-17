@@ -1,21 +1,7 @@
+theme: jekyll-theme-cayman
 title: [Linux Adventures]
 description: [Better to solve problem's]
 show_downloads: true
-baseurl: ""
 
-#About/contact
-author:
-    name:  veerendra
-
-
-	
-#Gems
 gems:
   - jekyll-seo-tag
-
-#theme: jekyll-theme-cayman
-#title: [Linux Adventures]
-#description: [Better to solve problem's]
-#show_downloads: ["false"]
-#gems:
-#  - jekyll-seo-tag
