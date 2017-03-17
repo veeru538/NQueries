@@ -7,7 +7,7 @@ baseurl: ""
 author:
     name:  veerendra
     url: http://nqueries.com
-    baseurl: ""
+
 	
 #Gems
 gems:
