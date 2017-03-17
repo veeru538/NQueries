@@ -6,22 +6,24 @@
     sudo systemctl start nginx
     
 ## Install and Configure MariaDB:
+~~~
     sudo apt-get install -y mariadb-client mariadb-server
     sudo systemctl start mysql
     sudo mysql_secure_installation
     sudo mysql -u root -p
-~~~    
+   
         create database wpdatabase;
         grant all privileges on wpdatabase.* to wordpressuser@localhost identified by 'yourdbpassword';
         flush privileges;
 ~~~
 ## Install and Configure HHVM:
+~~~
     sudo apt-get install software-properties-common
     sudo apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0x5a16e7281be7a449 
     sudo add-apt-repository "deb http://dl.hhvm.com/ubuntu $(lsb_release -sc) main"
     sudo apt-get update
     sudo apt-get install -y hhvm
-    
+~~~    
     
    Once the installation is complete, configure Nginx web server to use HHVM.
 
@@ -107,7 +109,7 @@ To Install Required packages:
 Installing Netdata:
 
 Run the following command to clone the netdata git.
-~~~yml
+~~~
     git clone https://github.com/firehol/netdata.git --depth=1
     cd netdata    
     sudo ./netdata-installer.sh
