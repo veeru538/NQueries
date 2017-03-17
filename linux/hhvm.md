@@ -153,8 +153,12 @@ INFORMATION:
 I see you have kernel memory de-duper (called Kernel Same-page Merging,or KSM) available, but it is not currently enabled.
 To enable it run:
 
+~~~yml
+
   echo 1 >/sys/kernel/mm/ksm/run
   echo 1000 >/sys/kernel/mm/ksm/sleep_millisecs
+
+~~~
 
 If you enable it, you will save 20-60% of netdata memory.
 
