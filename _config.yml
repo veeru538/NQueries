@@ -1,4 +1,4 @@
 theme: jekyll-theme-cayman
 title: [My Work Adventures]
 description: [Better to solve problem's]
-menu:  [**AboutUs**](AboutUs.md)                    | [**Linux**](Ubuntu.md)                    |  [**DataBases**](Databases.md)          | [**Security**](Security.md)  
+show_downloads: ["false"]
