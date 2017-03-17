@@ -1,8 +1,21 @@
-theme: jekyll-theme-cayman
+defaults:
 title: [Linux Adventures]
 description: [Better to solve problem's]
-view_repo: false
 show_downloads: false
+
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      comments: true
+
+
+#theme: jekyll-theme-cayman
+#title: [Linux Adventures]
+#description: [Better to solve problem's]
+#view_repo: false
+#show_downloads: false
 
 
 gems:
