@@ -10,10 +10,12 @@
     sudo systemctl start mysql
     sudo mysql_secure_installation
     sudo mysql -u root -p
+    
 ~~~yaml    
         create database wpdatabase;
         grant all privileges on wpdatabase.* to wordpressuser@localhost identified by 'yourdbpassword';
         flush privileges;
+        
 ~~~
 ## Install and Configure HHVM:
     sudo apt-get install software-properties-common
