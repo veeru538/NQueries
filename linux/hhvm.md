@@ -57,16 +57,20 @@
    Add index.php to index line.
    
  * From:
+ 
 ~~~yml     
      index index.html index.htm index.nginx-debian.html;
-~~~     
+~~~    
+
  * To:
+ 
 ~~~yml    
     index index.php index.html index.htm index.nginx-debian.html;
 ~~~
   If you get minus 404 eroor
-
+  
  * From:
+ 
 ~~~yml
       location / {
           try_files $uri $uri/ =404;
@@ -129,6 +133,8 @@ To start it, just run it:
 
 If you want access netdata and your wordpress site both on nginx server add below  lines in nginx server configuration file 
 
+~~~yml
+
 location /netdata/ {
     rewrite ^/netdata(/.*)$ $1 break;
     proxy_pass  http://localhost:19999/;
@@ -139,7 +145,7 @@ location /netdata/ {
     proxy_redirect    off;
 }    
 
-  
+~~~
   
 
 INFORMATION:
