@@ -2,9 +2,5 @@ theme: jekyll-theme-cayman
 title: [Linux Adventures]
 description: [Better to solve problem's]
 #show_downloads: ["false"]
-<html>
-  <head>
   {% seo title=false %}
     {% seo %}
-  </head>
-</html>
