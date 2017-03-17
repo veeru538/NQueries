@@ -1,21 +1,9 @@
 theme: jekyll-theme-cayman
 title: [Linux Adventures]
 description: [Better to solve problem's]
-show_downloads: false
-
-  # _posts
-  - scope:
-      path: ""
-      type: posts
-    values:
-      comments: true
-
-
-#theme: jekyll-theme-cayman
-#title: [Linux Adventures]
-#description: [Better to solve problem's]
+url: nqueries.com
 #view_repo: false
-#show_downloads: false
+show_downloads: false
 
 
 gems:
