@@ -6,24 +6,22 @@
     sudo systemctl start nginx
     
 ## Install and Configure MariaDB:
-~~~
     sudo apt-get install -y mariadb-client mariadb-server
     sudo systemctl start mysql
     sudo mysql_secure_installation
     sudo mysql -u root -p
-   
+~~~yaml    
         create database wpdatabase;
         grant all privileges on wpdatabase.* to wordpressuser@localhost identified by 'yourdbpassword';
         flush privileges;
 ~~~
 ## Install and Configure HHVM:
-~~~
     sudo apt-get install software-properties-common
     sudo apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0x5a16e7281be7a449 
     sudo add-apt-repository "deb http://dl.hhvm.com/ubuntu $(lsb_release -sc) main"
     sudo apt-get update
     sudo apt-get install -y hhvm
-~~~    
+    
     
    Once the installation is complete, configure Nginx web server to use HHVM.
 
@@ -59,17 +57,17 @@
    Add index.php to index line.
    
  * From:
-~~~   
+~~~yml     
      index index.html index.htm index.nginx-debian.html;
 ~~~     
  * To:
-~~~   
+~~~yml    
     index index.php index.html index.htm index.nginx-debian.html;
 ~~~
   If you get minus 404 eroor
 
  * From:
-~~~
+~~~yml
       location / {
           try_files $uri $uri/ =404;
       }
@@ -128,7 +126,7 @@ To start it, just run it:
   /usr/sbin/netdata
 
 If you want access netdata and your wordpress site both on nginx server add below  lines in nginx server configuration file 
-~~~
+
 location /netdata/ {
     rewrite ^/netdata(/.*)$ $1 break;
     proxy_pass  http://localhost:19999/;
@@ -138,7 +136,7 @@ location /netdata/ {
     proxy_set_header X-Forwarded-Proto https;
     proxy_redirect    off;
 }    
-~~~
+
   
   
 
@@ -146,12 +144,20 @@ INFORMATION:
 
 I see you have kernel memory de-duper (called Kernel Same-page Merging,or KSM) available, but it is not currently enabled.
 To enable it run:
-~~~
+
   echo 1 >/sys/kernel/mm/ksm/run
   echo 1000 >/sys/kernel/mm/ksm/sleep_millisecs
-~~~
+
 If you enable it, you will save 20-60% of netdata memory.
 
 Uninstall script generated:
    
     ./netdata-uninstaller.sh
+
+    
+
+    
+
+
+    
+    
