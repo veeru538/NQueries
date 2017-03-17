@@ -74,7 +74,7 @@
 ~~~
 
 * To:
-~~~
+~~~yml
     location / {
         index index.php index.html index.htm;
         try_files $uri $uri/ /index.php?$args;
