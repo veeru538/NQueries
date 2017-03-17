@@ -4,7 +4,7 @@
 
 # _Better for Searching Tech_
 
- 
+ <script src="//cdn.ckeditor.com/4.6.2/basic/ckeditor.js"></script>
  
 
 You can use the [editor on GitHub](https://github.com/veeru538/Queries/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
