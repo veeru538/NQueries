@@ -2,5 +2,5 @@ theme: jekyll-theme-cayman
 title: [Linux Adventures]
 description: [Better to solve problem's]
 #show_downloads: ["false"]
-  {% seo title=false %}
-    {% seo %}
+gems:
+  - jekyll-seo-tag
