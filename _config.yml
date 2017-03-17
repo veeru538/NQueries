@@ -1,7 +1,9 @@
 theme: jekyll-theme-cayman
 title: [Linux Adventures]
 description: [Better to solve problem's]
-show_downloads: true
+view_repo: false
+show_downloads: false
+
 
 gems:
   - jekyll-seo-tag
