@@ -94,7 +94,7 @@ If you're having problems with TLS, you can take a look at the TLS log file '/va
 ## Add an FTP user:
 
 The ProFTPD configuration used in thus tutorial authenticates users against the Linux system user database (/etc/passwd and /etc/shadow). 
-In this step, I will add a user "tom" to be used for FTP login only.
+In this step, I will add a user "veeru1" to be used for FTP login only.
 ~~~yml
 useradd --shell /bin/false veeru1
 ~~~
