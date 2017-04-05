@@ -102,3 +102,12 @@ firewall_logdeny="YES"
 To Starting the Firewall:
  
       sudo service ipfw start
+
+## how to change Shell in FreeBSD:
+check default shell:
+      
+      env | grep SHELL
+      
+To cange shell csh to bash 
+      
+       chsh -s /usr/local/bin/bash
