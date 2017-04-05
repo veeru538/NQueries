@@ -13,7 +13,7 @@ Before  you can start setup swich shell root user mode
 ~~~
 It will ask for some question about ProFTPD, select standalone and press Ok
 
-![alt text](./images/proftp1.png)
+![image1](./images/proftp1.png)
 
 ## We can check the ProFTPD version as follows:
 ~~~yaml 
