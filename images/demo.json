@@ -1,0 +1,294 @@
+{
+  "version": 1,
+  "height": 35,
+  "stdout": [
+    [
+      0.009492,
+      "[root@devlab ~]# "
+    ],
+    [
+      5.240689,
+      "p"
+    ],
+    [
+      0.978232,
+      "h"
+    ],
+    [
+      0.552833,
+      "\b\u001b[K"
+    ],
+    [
+      0.308701,
+      "k"
+    ],
+    [
+      0.155241,
+      "g"
+    ],
+    [
+      0.712952,
+      " "
+    ],
+    [
+      0.313818,
+      "i"
+    ],
+    [
+      0.179734,
+      "s"
+    ],
+    [
+      0.012732,
+      "n"
+    ],
+    [
+      0.139986,
+      "t"
+    ],
+    [
+      0.205173,
+      "a"
+    ],
+    [
+      0.214169,
+      "l"
+    ],
+    [
+      0.154272,
+      "l"
+    ],
+    [
+      0.545176,
+      "\b\u001b[K"
+    ],
+    [
+      0.153438,
+      "\b\u001b[K"
+    ],
+    [
+      0.148414,
+      "\b\u001b[K"
+    ],
+    [
+      0.154848,
+      "\b\u001b[K"
+    ],
+    [
+      0.151253,
+      "\b\u001b[K"
+    ],
+    [
+      0.138175,
+      "\b\u001b[K"
+    ],
+    [
+      0.488421,
+      "n"
+    ],
+    [
+      0.151388,
+      "s"
+    ],
+    [
+      0.218555,
+      "t"
+    ],
+    [
+      0.178437,
+      "a"
+    ],
+    [
+      0.244764,
+      "l"
+    ],
+    [
+      0.168503,
+      "l"
+    ],
+    [
+      0.205558,
+      " "
+    ],
+    [
+      1.081346,
+      "z"
+    ],
+    [
+      0.284595,
+      "i"
+    ],
+    [
+      0.224968,
+      "p"
+    ],
+    [
+      3.002111,
+      "\r\n"
+    ],
+    [
+      0.019845,
+      "Updating FreeBSD repository catalogue...\r\n"
+    ],
+    [
+      1.67724,
+      "FreeBSD repository is up to date.\r\nAll repositories are up to date.\r\n"
+    ],
+    [
+      0.10022,
+      "The following 1 package(s) will be affected (of 0 checked):\r\n\r\nNew packages to be INSTALLED:\r\n\tzip: 3.0_1\r\n\r\nNumber of packages to be installed: 1\r\n\r\n219 KiB to be downloaded.\r\n\r\nProceed with this action? [y/N]: "
+    ],
+    [
+      1.268739,
+      "y"
+    ],
+    [
+      0.200495,
+      "\r\n"
+    ],
+    [
+      0.464785,
+      "[1/1] Fetching zip-3.0_1.txz:   0%"
+    ],
+    [
+      0.693063,
+      "\r[1/1] Fetching zip-3.0_1.txz: 100%  219 KiB 224.1kB/s    00:01    \r\nChecking integrity..."
+    ],
+    [
+      0.003409,
+      " done (0 conflicting)\r\n"
+    ],
+    [
+      0.012264,
+      "[1/1] Installing zip-3.0_1...\r\nExtracting zip-3.0_1:   0%"
+    ],
+    [
+      0.012639,
+      "\rExtracting zip-3.0_1:   0%"
+    ],
+    [
+      0.007319,
+      "\rExtracting zip-3.0_1:   5%"
+    ],
+    [
+      0.002715,
+      "\rExtracting zip-3.0_1:  11%"
+    ],
+    [
+      0.003182,
+      "\rExtracting zip-3.0_1:  17%"
+    ],
+    [
+      0.007532,
+      "\rExtracting zip-3.0_1:  23%"
+    ],
+    [
+      0.001679,
+      "\rExtracting zip-3.0_1:  29%"
+    ],
+    [
+      0.001189,
+      "\rExtracting zip-3.0_1:  35%"
+    ],
+    [
+      0.001023,
+      "\rExtracting zip-3.0_1:  41%"
+    ],
+    [
+      0.001277,
+      "\rExtracting zip-3.0_1:  47%"
+    ],
+    [
+      0.001943,
+      "\rExtracting zip-3.0_1:  52%"
+    ],
+    [
+      0.001046,
+      "\rExtracting zip-3.0_1:  58%"
+    ],
+    [
+      0.009585,
+      "\rExtracting zip-3.0_1:  64%"
+    ],
+    [
+      0.002853,
+      "\rExtracting zip-3.0_1:  70%"
+    ],
+    [
+      0.002682,
+      "\rExtracting zip-3.0_1:  76%"
+    ],
+    [
+      0.002018,
+      "\rExtracting zip-3.0_1:  82%"
+    ],
+    [
+      0.001034,
+      "\rExtracting zip-3.0_1:  88%"
+    ],
+    [
+      0.000977,
+      "\rExtracting zip-3.0_1:  94%"
+    ],
+    [
+      0.000242,
+      "\rExtracting zip-3.0_1: 100%"
+    ],
+    [
+      0.000222,
+      "\r\n"
+    ],
+    [
+      0.010647,
+      "[root@devlab ~]# "
+    ],
+    [
+      16.579171,
+      "ipfw"
+    ],
+    [
+      0.455462,
+      " "
+    ],
+    [
+      0.394857,
+      "l"
+    ],
+    [
+      0.223469,
+      "i"
+    ],
+    [
+      0.049571,
+      "s"
+    ],
+    [
+      0.165051,
+      "t"
+    ],
+    [
+      0.253227,
+      "\r\n"
+    ],
+    [
+      0.034185,
+      "00100 allow ip from any to any via lo0\r\n00200 deny ip from any to 127.0.0.0/8\r\n00300 deny ip from 127.0.0.0/8 to any\r\n00400 deny ip from any to ::1\r\n00500 deny ip from ::1 to any\r\n00600 allow ipv6-icmp from :: to ff02::/16\r\n00700 allow ipv6-icmp from fe80::/10 to fe80::/10\r\n00800 allow ipv6-icmp from fe80::/10 to ff02::/16\r\n00900 allow ipv6-icmp from any to any ip6 icmp6types 1\r\n01000 allow ipv6-icmp from any to any ip6 icmp6types 2,135,136\r\n01100 check-state\r\n01200 allow tcp from me to any established\r\n01300 allow tcp from me to any setup keep-state\r\n01400 allow udp from me to any keep-state\r\n01500 allow icmp from me to any keep-state\r\n01600 allow ipv6-icmp from me to any keep-state\r\n01700 allow udp from 0.0.0.0 68 to 255.255.255.255 dst-port 67 out\r\n01800 allow udp from any 67 to me dst-port 68 in\r\n01900 allow udp from any 67 to 255.255.255.255 dst-port 68 in\r\n02000 allow udp from fe80::/10 to me dst-port 546 in\r\n02100 allow icmp from any to any icmptypes 8\r\n02200 allow ipv6-icmp from any to any ip6 icmp6ty"
+    ],
+    [
+      7e-05,
+      "pes 128,129\r\n02300 allow icmp from any to any icmptypes 3,4,11\r\n02400 allow ipv6-icmp from any to any ip6 icmp6types 3\r\n02500 allow tcp from any to me dst-port 22\r\n02600 allow tcp from any to me dst-port 80\r\n65000 count ip from any to any\r\n65100 deny { tcp or udp } from any to any dst-port 135-139,445 in\r\n65200 deny { tcp or udp } from any to any dst-port 1026,1027 in\r\n65300 deny { tcp or udp } from any to any dst-port 1433,1434 in\r\n65400 deny ip from any to 255.255.255.255\r\n65500 deny ip from any to 224.0.0.0/24 in\r\n65500 deny udp from any to any dst-port 520 in\r\n65500 deny tcp from any 80,443 to any dst-port 1024-65535 in\r\n65500 deny log logamount 500 ip from any to any\r\n65535 deny ip from any to any\r\n"
+    ],
+    [
+      0.001338,
+      "[root@devlab ~]# "
+    ]
+  ],
+  "title": null,
+  "width": 80,
+  "env": {
+    "TERM": "xterm-256color",
+    "SHELL": "/usr/local/bin/bash"
+  },
+  "duration": 39.38793,
+  "command": null
+}
