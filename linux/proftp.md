@@ -120,16 +120,16 @@ create apache2 configuration file for virtual hosting
 nano  /etc/apache2/sites-available/veeru1.conf
 ~~~yml
 <VirtualHost *:80>
-	ServerName  veeru1.example.com
-	ServerAdmin webmaster@localhost
-	DocumentRoot /home/veeru1
-	<Directory /home/veeru1>
-	 Options All -Indexes 
-	 AllowOverride All
-   Require all granted
-	</Directory>
-	ErrorLog ${APACHE_LOG_DIR}/veeru1-error.log
-	CustomLog ${APACHE_LOG_DIR}/veeru1-access.log combined
+ServerName  veeru1.example.com
+ServerAdmin webmaster@localhost
+DocumentRoot /home/veeru1
+<Directory /home/veeru1>
+ Options All -Indexes 
+ AllowOverride All
+ Require all granted
+</Directory>
+ErrorLog ${APACHE_LOG_DIR}/veeru1-error.log
+CustomLog ${APACHE_LOG_DIR}/veeru1-access.log combined
 </VirtualHost>
 ~~~
 cd /etc/apache2/sites-available
