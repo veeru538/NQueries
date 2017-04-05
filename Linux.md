@@ -3,7 +3,7 @@
 - WebServers
     - [HHVM](linux/hhvm.md)
     - LAMP
-         - [Ubuntu](linux/lamp_FreeBSD.md)
+         - [FreeBSD](linux/lamp_FreeBSD.md)
          - [Ubuntu](linux/ubuntu_lamp.md)
          - [CentOS](linux/centos_lamp.md)
  
