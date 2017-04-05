@@ -7,7 +7,7 @@ Before  you can start setup swich shell root user mode
   sudo -s
 ~~~
 
-## Install ProFTPd and OpenSSL:
+### Install ProFTPd and OpenSSL:
 ~~~yaml    
   apt-get -y install proftpd openssl
 ~~~
@@ -15,7 +15,7 @@ It will ask for some question about ProFTPD, select standalone and press Ok
 
 ![image1](/images/proftp1.png)
 
-## We can check the ProFTPD version as follows:
+### We can check the ProFTPD version as follows:
 ~~~yaml 
 root@dev1:~# proftpd -v
 ProFTPD Version 1.3.4a
@@ -29,7 +29,7 @@ ServerIdent on "FTP Server ready."
 ~~~
 The first option enables chrooting of FTP users into their home directory and the second option enables a ServerIdent message that does not contain any information about the used FTP server software, version or OS so that a potential attacker don't gets these details on the silver plate.
 
-## Create the SSL Certificate for TLS:
+### Create the SSL Certificate for TLS:
 
 In order to use TLS, we must create an SSL certificate. I create it in /etc/proftpd/ssl, therefore I create that directory first:
 ~~~yaml 
@@ -54,7 +54,7 @@ Email Address []:<-- Enter your Email Address.
 ~~~yaml 
 chmod 600 /etc/proftpd/ssl/proftpd.*
 ~~~
-## Enable TLS in ProFTPd:
+### Enable TLS in ProFTPd:
 In order to enable TLS in ProFTPd, open /etc/proftpd/proftpd.conf...
 
 Uncomment the Include /etc/proftpd/tls.conf line in  /etc/proftpd/proftpd.conf file:
@@ -82,7 +82,7 @@ RequireValidShell          no
 
 If you use TLSRequired on, then only TLS connections are allowed (this locks out any users with old FTP clients that don't have TLS support); by commenting out that line or using TLSRequired off both TLS and non-TLS connections are allowed, depending on what the FTP.
 
-## Restart ProFTPd  service:
+### Restart ProFTPd  service:
 ~~~yml
 systemctl restart proftpd.service
 ~~~
@@ -91,7 +91,7 @@ That's it. You can now try to connect using your FTP client; however, you should
 If you're having problems with TLS, you can take a look at the TLS log file '/var/log/proftpd/tls.log.'
 
  
-## Add an FTP user:
+### Add an FTP user:
 
 The ProFTPD configuration used in thus tutorial authenticates users against the Linux system user database (/etc/passwd and /etc/shadow). 
 In this step, I will add a user "veeru1" to be used for FTP login only.
@@ -110,7 +110,38 @@ AnotherWay :
 ~~~yml
 useradd --home /home/veeru1 --create-home --shell /bin/false veeru1
 ~~~
-## To Set password FTP User:
+### To Set password FTP User:
 ~~~yml
 passwd veeru1
+~~~
+
+## FTP root directory access apache root directory Configuration:
+create apache2 configuration file for virtual hosting 
+nano  /etc/apache2/sites-available/veeru1.conf
+~~~yml
+<VirtualHost *:80>
+	ServerName  veeru1.example.com
+	ServerAdmin webmaster@localhost
+	DocumentRoot /home/veeru1
+	<Directory /home/veeru1>
+	 Options All -Indexes 
+	 AllowOverride All
+   Require all granted
+	</Directory>
+	ErrorLog ${APACHE_LOG_DIR}/veeru1-error.log
+	CustomLog ${APACHE_LOG_DIR}/veeru1-access.log combined
+</VirtualHost>
+~~~
+cd /etc/apache2/sites-available
+a2ensite veeru1.conf
+
+### Give Ftp and apache upload access:
+~~~yml
+cd /home
+chown veeru1:www-data veeru1 -R
+sudo usermod -aG www-data veeru1
+~~~
+(Optional) Make sure every new file after this is created with www-data as the 'access' user.
+~~~yml
+find -type d -exec chmod g+s {} +
 ~~~
