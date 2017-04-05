@@ -54,14 +54,14 @@ Before Apache will process PHP pages, we must configure it to use mod_php.
 Open the Apache configuration file and edit it :      
 
       sudo nano /usr/local/etc/apache24/httpd.conf      
-```      
+~~~yml      
 <IfModule dir_module>
     DirectoryIndex index.html
 </IfModule>
-```
+~~~
     
 To
-```    
+~~~yml  
 <IfModule dir_module>
     DirectoryIndex index.php index.html
     <FilesMatch "\.php$">
@@ -71,12 +71,13 @@ To
         SetHandler application/x-httpd-php-source
     </FilesMatch>
  </IfModule>
- ```
+~~~
 Test PHP Processing:
             
       sudo vi /usr/local/www/apache24/data/info.php
       
 ~~~php
+
       <?php phpinfo(); ?>
 ~~~
       
