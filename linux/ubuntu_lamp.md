@@ -1,3 +1,2 @@
 [![ScreenShot]()](images/demo.json)
-![Sample Video](images/demo.json)
-<link rel="alternate" type="application/asciicast+json" href="images/demo.json">
+[![asciicast](https://asciinema.org/a/14.png)](images/demo.json)
