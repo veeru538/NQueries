@@ -44,4 +44,59 @@ Install PHP Modules:
       
       sudo pkg search php56
 
+To get more information about each module does, you can either search the internet, or you can look at the long description of the package by typing:
 
+      sudo pkg search -f package_name
+
+Configure Apache to Use PHP Module:
+Before Apache will process PHP pages, we must configure it to use mod_php.
+
+Open the Apache configuration file and edit it :      
+
+      sudo nano /usr/local/etc/apache24/httpd.conf      
+```      
+<IfModule dir_module>
+    DirectoryIndex index.html
+</IfModule>
+```
+    
+To
+```    
+<IfModule dir_module>
+    DirectoryIndex index.php index.html
+    <FilesMatch "\.php$">
+        SetHandler application/x-httpd-php
+    </FilesMatch>
+    <FilesMatch "\.phps$">
+        SetHandler application/x-httpd-php-source
+    </FilesMatch>
+ </IfModule>
+    
+```
+Test PHP Processing:
+            
+      sudo vi /usr/local/www/apache24/data/info.php
+      
+~~~php
+      <?php phpinfo(); ?>
+~~~
+      
+## How To Configure a Simple IPFW Firewall:
+
+Configuring the Basic Firewall 
+Almost all of our configuration will take place in the `/etc/rc.conf` file
+         
+         sudo vi /etc/rc.conf
+
+To add below rules:
+```
+firewall_enable="YES"
+firewall_quiet="YES"
+firewall_type="workstation"
+firewall_myservices="22 80"
+firewall_allowservices="any"
+firewall_logdeny="YES"
+```
+To Starting the Firewall:
+ 
+      sudo service ipfw start
