@@ -71,8 +71,7 @@ To
         SetHandler application/x-httpd-php-source
     </FilesMatch>
  </IfModule>
-    
-```
+ ```
 Test PHP Processing:
             
       sudo vi /usr/local/www/apache24/data/info.php
