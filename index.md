@@ -2,7 +2,7 @@
 layout: default
 title: Linux Adventures
 ---
-[**AboutUs**](AboutUs.md)                    | [**Linux**](Linux.md)                    |  [**DataBases**](Databases.md)          | [**Security**](Security.md)  
+[**AboutUs**](AboutUs.md)                    | [**Linux**](Linux.md)                    |  [**DataBases**](Databases.md)          | [**Security**](Security.md)    | [**DevOps**](devops.md)  
 
 
 # _Better for Searching Tech_
