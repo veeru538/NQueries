@@ -1,4 +1,6 @@
-This gist will drive you through creating a Docker 1.12 Swarm cluster (with Swarm mode) on AWS infrastructure.
+[**Linux**](../Linux.md)
+
+This will drive you through creating a Docker 1.12 Swarm cluster (with Swarm mode) on AWS infrastructure.
 
 ## Prerequisites
 
