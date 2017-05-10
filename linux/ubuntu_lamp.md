@@ -1,3 +1,4 @@
+[**Linux**](../Linux.md)
 # Lamp Instalation Script for Ubuntu16.04
 ~~~yml
 #!/bin/bash
