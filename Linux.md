@@ -6,6 +6,8 @@
          - [FreeBSD](linux/lamp_FreeBSD.md)
          - [Ubuntu](linux/ubuntu_lamp.md)
          - [CentOS](linux/centos_lamp.md)
+              - [Custom systemctl Service](linux/CentOS7Service.md)
+           
  
  - FTP
     -  [ProFTP](linux/proftp.md)
