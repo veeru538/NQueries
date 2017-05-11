@@ -1,7 +1,10 @@
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
+
+| Machine Type  | Components Installed  | IP Address	  | Hostname      | Description                                                                  |
+| ------------- | --------------------- | ------------- | ------------- | ---------------------------------------------------------------------------- |
+| App Server 1  | Application,mongos    | 10.10.10.10   | appserver02   | This server will server dual role of app server as well as the mongos server |
+| App Server 2  | Application,mongos    | 10.10.10.11   | appserver02   | This server will server dual role of app server as well as the mongos server |
+
+
 Machine Type	Components Installed	Description	IP Address	Hostname
 App Server 1	Application, Mongos	This server will server dual role of app server as well as the mongos server	10.10.10.10	appserver01
 App Server 2	Application, Mongos	This server will server dual role of app server as well as the mongos server	10.10.10.11	appserver02
