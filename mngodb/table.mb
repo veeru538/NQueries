@@ -1,19 +1,14 @@
 
-| Machine Type  | Components Installed  | IP Address	  | Hostname      | Description                                                                  |
+| Machine Type  | Components Installed  | IP Address	 | Hostname      | Description                                                                  |
 | ------------- | --------------------- | ------------- | ------------- | ---------------------------------------------------------------------------- |
-| App Server 1  | Application,mongos    | 10.10.10.10   | appserver02   | This server will server dual role of app server as well as the mongos server |
+| App Server 1  | Application,mongos    | 10.10.10.10   | appserver01   | This server will server dual role of app server as well as the mongos server |
 | App Server 2  | Application,mongos    | 10.10.10.11   | appserver02   | This server will server dual role of app server as well as the mongos server |
-
-
-Machine Type	Components Installed	Description	IP Address	Hostname
-App Server 1	Application, Mongos	This server will server dual role of app server as well as the mongos server	10.10.10.10	appserver01
-App Server 2	Application, Mongos	This server will server dual role of app server as well as the mongos server	10.10.10.11	appserver02
-Mongo Config 1	Mongo Config Server	Used as mongodb config server	10.10.10.12	mongoconfig01
-Mongo Config 2	Mongo Config Server	Used as mongodb config server	10.10.10.13	mongoconfig02
-Mongo Config 3	Mongo Config Server	Used as mongodb config server	10.10.10.14	mongoconfig03
-Shard 1 Primary	Mongo DB	Used as primary DB server in shard 1	10.10.10.15	mongosh01db01
-Shard 1 Secondary	Mongo DB	Used as secondary DB server in shard 1	10.10.10.16	mongosh01db02
-Shard 1 Secondary	Mongo DB	Used as secondary DB server in shard 1	10.10.10.17	mongosh01db03
-Shard 2 Primary	Mongo DB	Used as primary DB server in shard 2	10.10.10.18	mongosh02db01
-Shard 2 Secondary	Mongo DB	Used as secondary DB server in shard 2	10.10.10.19	mongosh02db02
-Shard 2 Secondary	Mongo DB	Used as secondary DB server in shard 2	10.10.10.20	mongosh02db03
+| Mongo         | Config 1              | 10.10.10.12   | mongoconfig01 | Mongo Config Server	Used as mongodb config server                            |
+| Mongo         | Config 2              | 10.10.10.13   | mongoconfig02 | Mongo Config Server	Used as mongodb config server                            |
+| Mongo         | Config 3              | 10.10.10.14   | mongoconfig03 | Mongo Config Server	Used as mongodb config server                            |
+| Shard 1       | Primary               | 10.10.10.15   | mongosh01db01 | Mongo DB	Used as Primary DB server in shard 1                               |
+| Shard 1       | Secondary             | 10.10.10.16   | mongosh01db02 | Mongo DB	Used as Secondary  DB server in shard 1                            |
+| Shard 1       | Secondary             | 10.10.10.17   | mongosh01db03 | Mongo DB	Used as Secondary  DB server in shard 1                            |
+| Shard 2       | Primary               | 10.10.10.18   | mongosh02db01 | Mongo DB	Used as Primary DB server in shard 2                               |
+| Shard 2       | Secondary             | 10.10.10.19   | mongosh02db02 | Mongo DB	Used as Secondary  DB server in shard 2                            |
+| Shard 2       | Secondary             | 10.10.10.20   | mongosh02db03 | Mongo DB	Used as Secondary  DB server in shard 2                            |
