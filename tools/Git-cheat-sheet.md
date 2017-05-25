@@ -1,5 +1,5 @@
-Git cheat sheet is a git command list including common command when using command line.
-# This article content some main point as create git, local changes, commit history, branches and tags, update and publish, merge and rebase and undo commit
+# Git cheat sheet is a git command list including common command when using command line.
+This article content some main point as create git, local changes, commit history, branches and tags, update and publish, merge and rebase and undo commit
 
     Create
 
