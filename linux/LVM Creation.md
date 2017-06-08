@@ -176,4 +176,108 @@ In above example PE belonging to lvol2 will be moved from disk1 to disk2. PE dis
 
 
 ## Part 2 : Volume group (vgcreate, vgdisplay, vgscan, vgextend, vgreduce, vgexport, vgimport, vgcfgbackup, vgcfgrestore, vgchange, vgremove, vgsync)
+
+### vgcreate
+
+As we all know volume group i.e. VG is a collection if PV. Refer LVM legands for better understanding. VG creation is the next necessary step after PV creation to use disk space in mount points. Since in Unix everything is a file, to manage VG, kernel creates /dev/vgname/group file. This file represents VG in kernel. Let us see how to create VG from bunch of available PV. Post Mar 2008 releases of HPUX creates group file automatically with vgcreate command. But we will see here to how to make one.
+
+First create a directory with desired name of your VG for ex. lets say testvg is our VG name. After that using mknod command create special group file. In command you need to supply major and minor numbers.
+Shell
+```
+mkdir /dev/testvg
+mknod /dev/testvg/group c major 0xminor
+
+major number : 64 for version 1.0 VG and 128 for version 2.0 VG
+minor number : Its hexadecimal number. 0xnn0000 for v1.0 and 0x0000 for v2.0 where nn/nnn is unique number.
+```
+Now that special file is generated go ahead to create VG
+
+```
+vgcreate /dev/testvg /dev/disk/disk3 /dev/disk/disk4
+Volume group "/dev/testvg" has been successfully created.
+Volume Group configuration for /dev/testvg has been saved in /etc/lvmconf/testvg.conf
+```
+ 
+
+vgcreate can be run with single PV argument too. This command has several options as below :
+
+    -V 1.0            To decide version.
+    -s PE_size    Size of PE to be used in MB. Default is 4MB
+    -e max_PE   Max PE per PV. Default is 1016
+    -l max_lv      Max number of LV per VG. Default is 255
+    -p max_pv   Max number of PV per VG. Default is 255
+    -S vg_size    Max future size of VG. Only in v2.0.
+
+ 
+
+Above options can be supplied to command with proper values but its not mandatory. If not supplied then their respective values will be taken into consideration while creating VG. Changes in parameters with these options can be seen in vgdisplay output which you can see in coming section.
+
+### vgdisplay
+
+Same as pvdisplay command, vgdisplay is used to view VG details. vgdisplay command can be run with -v option to get more detailed output. If run without -v option then it will show output like below but PV details portion wont be there.
+	
+``` 
+# vgdisplay -v vg_new
+--- Volume groups ---
+VG Name                     /dev/testvg
+VG Write Access             read/write     
+VG Status                   available                 
+Max LV                      255    
+Cur LV                      0      
+Open LV                     0      
+Max PV                      16     
+Cur PV                      2      
+Act PV                      2      
+Max PE per PV               6000         
+VGDA                        2   
+PE Size (Mbytes)            32              
+Total PE                    26    
+Alloc PE                    0       
+Free PE                     26    
+Total PVG                   0        
+Total Spare PVs             0              
+Total Spare PVs in use      0 
+ 
+   --- Physical volumes ---
+   PV Name                     /dev/disk/disk3
+   PV Status                   available                
+   Total PE                    10       
+   Free PE                     10       
+   Autoswitch                  On        
+ 
+   PV Name                     /dev/disk/disk4
+   PV Status                   available                
+   Total PE                    10       
+   Free PE                     10       
+   Autoswitch                  On
+ ```
+
+In above output, you can see PE Size (Mbytes), Max PE per PV, Max LV, Max PV fields which can be altered with options -s, -e, -l, -p arguments in vgcreate command we seen above.  The above output is pretty self explanatory. It also shows PV details which are part of this VG.
+
+### vgscan
+
+This command used for scanning all available PVs to get information of VG and related LV’s and rebuild /etc/lvmtab file. This command used below options :
+
+    -a Scan all available PV paths.
+    -B Write all persistent and legacy paths to /etc/lvmtab file
+    -f vg_name Force to update entries of existing VG in /etc/lvmtab with updated info if any
+    -k Avoid probing disks. Build file from kernel known structure.
+    -N Populate file with persistent DSF names
+    -p Preview mode only. It wont update lvmtab file
+    -v verbose mode. Prints messages in console.
+
+```
+# vgscan -v
+/dev/vg00
+/dev/disk/disk1_p2
+/dev/disk/disk2_p2
+```
+Scan of Physical Volumes Complete.
+ 
+
+Normally we use vgscan -v only. After this command you can verify timestamp of /etc/lvmtab file to verify its been updated.
+
+This concludes first 3 commands of VG. In next post we will see how to extend volume group, how to reduce volume group and how to export/import volume group.
+
+
 ## Part 3 : Logical Volume (lvcreate, lvdisplay, lvremove, lvextend, lvreduce, lvchange, lvsync, lvlnboot)
