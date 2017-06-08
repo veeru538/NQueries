@@ -451,4 +451,55 @@ Above stated modes can be activated/deactivated using below options :
 
 This concludes third post of part two related to volume group. In next and last post of part two, we are covering how to remove volume group from system and how to sync stale PE within volume group.
 
+### vgremove
+
+vgremove commands used to remove volume group from system. But this is destroying command since it requires removal of all LV, PV in VG. It is always recommended to use vgexport instead of vgremove. Since vgexport also removes VG information from system but keeps it untouched on PV so that same PV can be imported to new VG on new/same system using vgimport.
+Safe removal of VG can be done with below steps :
+
+        Backup all user data in that VG
+        Get information of all LV and PV in that VG using vgdisplay -v command
+        Make sure no LV is in use using fuser -cu /mount_point command
+```
+fuser -cu /data
+/data:   223412c(user1)
+```      
+Unmount mount points of related LV
+```
+umount /data
+```      
+Remove all LVs with lvremove /dev/vg01/lvol-name command
+```
+lvremove /dev/vg01/lvol1
+The logical volume "/dev/vg01/lvol1" is not empty;
+do you really want to delete the logical volume (y/n) : y
+Logical volume "/dev/vg01/lvol1" has been successfully removed.
+Volume Group configuration for /dev/vg03 has been saved in /etc/lvmconf/vg01.conf
+```
+
+Remove all PVs in VG except any one with vgreduce /dev/vg01 /dev/disk/diskX command
+```
+vgreduce /dev/vg01 /dev/disk/disk4
+Volume group "/dev/vg01" has been successfully reduced.
+Volume Group configuration for /dev/vg01 has been saved in /etc/lvmconf/vg01.conf
+```         
+Finally use vgremove command to remove VG from system
+```
+vgremove /dev/vg01
+Volume group "/dev/vg01" has been successfully removed
+```           
+Remove related group files from system using rm /dev/vg01 command
+
+### vgsync
+
+This command used to sync stale LE of LV mirrors in current VG. This used in mirroring only. Once can observe output of vgdisplay -v and confirm if there are any stale LE in current VG. If you found stale LE then you can synchronize them using this command.
+
+```
+# vgsync /dev/vg01
+Resynchronized logical volume "/dev/vg01/lvol01".
+Resynchronized logical volume "/dev/vg01/lvol02".
+Resynchronized volume group "/dev/vg01".
+```
+ 
+
+
 ## Part 3 : Logical Volume (lvcreate, lvdisplay, lvremove, lvextend, lvreduce, lvchange, lvsync, lvlnboot)
