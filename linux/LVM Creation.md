@@ -503,3 +503,94 @@ Resynchronized volume group "/dev/vg01".
 
 
 ## Part 3 : Logical Volume (lvcreate, lvdisplay, lvremove, lvextend, lvreduce, lvchange, lvsync, lvlnboot)
+
+### lvcreate
+
+This command used to create new logical volume. Logical volumes are mounted on directories as a mount point. So logical volume size is the size you want for mount point. Use command like below :
+
+```	
+lvcreate -L 1024 /dev/vg01
+Logical volume "/dev/vg01/lvol1" has been successfully created with character device "/dev/vg01/rlvol1"
+Volume Group configuration for /dev/vg01 has been saved in /etc/lvmconf/vg01.conf
+``` 
+
+In above command you need to supply size in MB (1 GB in above example) to -L argument and volume group name in which you need to create that LV. If no name suggested in command then by default command creates LV with name /dev/vg01/lvolX (X is next avaibale number).
+
+This command supports below options –
+
+    -l  : Number of LEs
+    -n : LV Name
+
+Created LV details can be seen using command lvdisplay.
+
+### lvdisplay
+
+We seen above how to create LV, now we will see how to view details of it. This command is same as pvdisplay for PV and vgdisplay for VG. It shows you details like name, volume group it belongs to, size, permission, status, allocation policy etc.
+	
+``` 
+# lvdisplay /dev/vg01/lvol1
+--- Logical volumes ---
+LV Name                     /dev/vg01/lvol1
+VG Name                     /dev/vg01
+LV Permission               read/write
+LV Status                   available/syncd
+Mirror copies               0
+Consistency Recovery        MWC
+Schedule                    parallel
+LV Size (Mbytes)            1024
+Current LE                  32
+Allocated PE                32
+Stripes                     0
+Stripe Size (Kbytes)        0
+Bad block                   on
+Allocation                  strict
+IO Timeout (Seconds)        default
+``` 
+
+More detailed output can be obtained with -v option. In this detailed outpout you can get the LE details where they resides and LV distribution across disks.
+	
+``` 
+# lvdisplay -v /dev/vg01/lvol1
+--- Logical volumes ---
+LV Name                     /dev/vg01/lvol1
+VG Name                     /dev/vg01
+ 
+----- Output clipped ----
+ 
+   --- Distribution of logical volume ---
+   PV Name                 LE on PV  PE on PV
+   /dev/disk/disk22        32        32
+ 
+   --- Logical extents ---
+   LE    PV1                     PE1   Status 1
+   00000 /dev/disk/disk22        00000 current
+   00001 /dev/disk/disk22        00001 current
+   00002 /dev/disk/disk22        00002 current
+   00003 /dev/disk/disk22        00003 current
+   00004 /dev/disk/disk22        00004 current
+   00005 /dev/disk/disk22        00005 current
+   00006 /dev/disk/disk22        00006 current
+   00007 /dev/disk/disk22        00007 current
+   00008 /dev/disk/disk22        00008 current
+   00009 /dev/disk/disk22        00009 current
+   00010 /dev/disk/disk22        00010 current
+   00011 /dev/disk/disk22        00011 current
+   00012 /dev/disk/disk22        00012 current
+   00013 /dev/disk/disk22        00013 current
+   00014 /dev/disk/disk22        00014 current
+ 
+----- output truncated -----
+``` 
+### lvremove
+
+Removing a logical volume is data destroying task. Make sure you take backup of data within mount point then empty it and stop all user/app access to it. If LV is not empty then command will prompt you for confirmation to proceed. 
+
+```
+lvremove /dev/vg01/lvol1
+The logical volume "/dev/vg01/lvol1" is not empty;
+do you really want to delete the logical volume (y/n) : y
+Logical volume "/dev/vg01/lvol1" has been successfully removed.
+Volume Group configuration for /dev/vg03 has been saved in /etc/lvmconf/vg01.conf
+```
+
+Once lvol is delete its number is again available for next new lvol which is being created in same VG. All PE assigned to this LV will be released as free PE and hence free space in VG will increase.
