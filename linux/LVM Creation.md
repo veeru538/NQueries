@@ -1,8 +1,8 @@
 # LVM(Logical Volume Creation)
 
-1. Physical Volume (pvcreate, pvdisplay, pvchange, pvmove)
-2. Volume group (vgcreate, vgdisplay, vgscan, vgextend, vgreduce, vgexport, vgimport, vgcfgbackup, vgcfgrestore, vgchange, vgremove, vgsync)
-3. Logical Volume (lvcreate, lvdisplay, lvremove, lvextend, lvreduce, lvchange, lvsync, lvlnboot)
+1. Physical Volume - pvcreate, pvdisplay, pvchange, pvmove
+2. Volume group - vgcreate, vgdisplay, vgscan, vgextend, vgreduce, vgexport, vgimport, vgcfgbackup, vgcfgrestore, vgchange, vgremove, vgsync 
+3. Logical Volume - lvcreate, lvdisplay, lvremove, lvextend, lvreduce, lvchange, lvsync, lvlnboot
 
 
 ## Part 1 : Physical Volume (pvcreate, pvdisplay, pvchange, pvmove)
