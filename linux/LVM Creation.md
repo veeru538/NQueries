@@ -366,4 +366,89 @@ This command can be supplied with below options :
 
 This concludes second post of part two. In next post we will be seeing how to backup and restore volume group configurations and how to change volume group states
 
+### vgcfgbackup
+
+As the command reads, it takes volume group configuration backup into a disk file residing under /etc/lvmconf directory in file /etc/lvmconf/vg_name.conf. It reads the LVM header details from system area of the disk and copies it to file. This file helps you to restore configuration on newly added disk in place of old disk which may have got corrupted or failed.
+
+It is recommended to have this backup taken after every LVM level change. By default all LVM commands altering LVM details are designed to take this backup automatically hence manually running command is not necessary.
+
+To take manual configuration backup use command as below :
+``` 
+# vgcfgbackup /dev/vg01
+Volume Group configuration for /dev/vg01 has been saved in /etc/lvmconf/vg01.conf
+```
+
+This needs to run for every volume group available on system. This command has couple of options :
+
+    -f file Save backup in file specified rather than default location
+    -u       Only updates extra PV which are added to VG after last backup. Only new PVs required to be online on system. IF -u not used all PV under VG should be online while running command.
+
+### vgcfgrestore
+
+This command restores the VG configuration taken using above command. Command mainely needs 2 argument volume group name of which configuration neds to be restored and a PV name on which configuration needs to be restored. There are two things which needs to keep in mind.
+
+If PV on which we are restoring the backup is part of mirror copy, then it should be deactivated first. Then restore backup and then reactivate it. Command sequence will be :
+```
+# pvchange -a n /dev/disk/disk5
+Physical volume "/dev/disk/disk5" has been successfully changed.
+
+# vgcfgrestore -n /dev/vg01 /dev/rdisk/disk5
+Volume Group configuration has been restored to /dev/rdisk/disk5
+
+# pvchange -a y /dev/disk/disk5
+Physical volume "/dev/disk/disk5" has been successfully changed.
+```
+
+If PV is not a part of mirror then you should deactivate volume group first then restore the backup and then activate volume group again. Command sequence will be :
+```
+# vgchange -a n /dev/vg01
+Volume group "/dev/vg01" has been successfully changed.
+
+# vgcfgrestore -n /dev/vg01 /dev/rdisk/disk5
+Volume Group configuration has been restored to /dev/rdisk/disk5
+
+# vgchange -a y /dev/vg01
+Volume group "/dev/vg01" has been successfully changed.
+```
+
+This command has several options which can be used with it :
+
+    -l                   List configuration only
+    -F                  Forcefully restore
+    -f file             Restore configuration from specified file not from default backup location
+    -v                   Verbose mdoe
+    -R                  Forcefully restore even if there is mismatch between PV in kernel and in config.
+    -o old_path Restore config saved for old PV (path supplied) to new PV mentioned in command.
+
+### vgchange
+
+This command used to make volume group active or inactive. Activated volume group simply means its available for use. There are different mode of volume groups in which they can be activated. They can be listed as below :
+
+    Normal availability mode
+    Cluster aware mode
+    Shareable mode
+    Quoram requirement mode
+
+vgchange command can be used with specified options and their values to activate or deactivate volume group. For example to normally activate it should be supplied with argument -a nd its value y. See below output to activate and then deactivate volume group
+
+``` 
+# vgchange -a y vg01
+Volume group “/dev/vg014” has been successfully changed.
+ 
+# vgchange -a n vg01
+Volume group “/dev/vg014” has been successfully changed.
+```
+
+Above stated modes can be activated/deactivated using below options :
+
+    -a y/n Normal availability mode
+    -c y/n Cluster aware mode
+    -S y/n Shareable mode
+    -q y/n Quoram requirement mode
+    -p Only activate if all related PVs are online
+    -s Disable stale PE sync
+    -x Cross activate shareable volume group
+
+This concludes third post of part two related to volume group. In next and last post of part two, we are covering how to remove volume group from system and how to sync stale PE within volume group.
+
 ## Part 3 : Logical Volume (lvcreate, lvdisplay, lvremove, lvextend, lvreduce, lvchange, lvsync, lvlnboot)
