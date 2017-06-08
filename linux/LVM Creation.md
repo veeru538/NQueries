@@ -594,3 +594,85 @@ Volume Group configuration for /dev/vg03 has been saved in /etc/lvmconf/vg01.con
 ```
 
 Once lvol is delete its number is again available for next new lvol which is being created in same VG. All PE assigned to this LV will be released as free PE and hence free space in VG will increase.
+
+### lvextend
+
+To extend logical volume, you should have enough free space within that VG. Command syntex is pretty much similar to lvcreate command for size. Only thing is you need to supply final required size in command. For example current LV size is 1GB and you want to extend it with 2GB. Then you need to give final 3GB size in command argument.
+``` 
+# lvextend -L 3072 /dev/vg01/lvol1
+Logical volume "/dev/vg01/lvol1" has been successfully extended.
+Volume Group configuration for /dev/vg01 has been saved in /etc/lvmconf/vg01.conf
+``` 
+
+Another important option is of mirror copies. It plays vital role in root disk mirroring. -m is the option with number of mirror copies as a argument.
+	
+``` 
+# lvextend -m 1 /dev/vg00/lvol1 /dev/disk/disk2_p2
+The newly allocated mirrors are now being synchronized. This operation will
+take some time. Please wait ....
+Logical volume "/dev/vg00/lvol1" has been successfully extended.
+Volume Group configuration for /dev/vg00 has been saved in /etc/lvmconf/vg00.conf
+```
+
+### lvreduce
+
+This command used for decreasing number of mirror copies or decreasing size of LV. This is data destroying command. Hence make sure you have datat of related file system backed up first. The size and mirror copy options are works same for this command as well . -L for LE_reduce_size, -l number of LE to be reduces and -m is number of copies to be reduced.
+
+``` 
+lvreduce -L 500 /dev/vg01/lvol1
+When a logical colume is reduced useful data might get lost;
+do you really want the command to proceed (y/n) : y
+Logical volume "/dev/vg01/lvol1" has been successfully reduced.
+Volume Group configuration for /dev/vg01 has been saved in /etc/lvmconf/vg01.conf
+``` 
+
+While reducing mirror copies if one of the PV is failed or missing then command wont run successful. you need to supply -k option which will proceed to remove mirror in case PV is missing.
+
+### lvchange
+This command is used for changing characteristics of LV. There are numerous options which can be used.
+
+    -a y/n Activate or deactivate LV
+    -C y/n Change contiguous allocation policy
+    -D y/n Change distributed allocation policy
+    -p w/r Set permission
+    -t timeout Set timeput in seconds
+    -M y/n Change mirror write cache flag
+    -d p/s Change scheduling policy
+
+### lvsync
+
+It synchronizes stale PE in given LV. Its used in mirroring environment. Whenever there is any disk failure or disk path issue, PE goes bad and LV in turns has stale PE. Once the issue is corrected we need to sync stale PE with this command if they doesnt sync automatically.
+
+Command dosnt have any options. It should be supplied with LV path only.
+
+```
+lvsync /dev/vg00/lvol6
+Resynchronized logical volume "/dev/vg00/lvol6".
+```
+ 
+### lvlnboot
+
+This command used to define logical volume as a root, dump, swap or boot volume. You have to submit LV path along with specific option of your choice to command. Options are as below :
+
+    -b Boot volume
+    -d Dump volume
+    -r Root volume
+    -s Swap volume
+    -R Recover any missing links
+    -v Verbose mode
+
+```
+# lvlnboot -r /dev/vg00/lvol3
+Volume Group configuration for /dev/vg00 has been saved in /etc/lvmconf/vg00.conf
+ 
+# lvlnboot -b /dev/vg00/lvol1
+Volume Group configuration for /dev/vg00 has been saved in /etc/lvmconf/vg00.conf
+ 
+# lvlnboot -s /dev/vg00/lvol2
+Volume Group configuration for /dev/vg00 has been saved in /etc/lvmconf/vg00.conf
+ 
+# lvlnboot -d /dev/vg00/lvol2
+Volume Group configuration for /dev/vg00 has been saved in /etc/lvmconf/vg00.conf
+```
+
+We have already seen this command in root disk mirroring.
