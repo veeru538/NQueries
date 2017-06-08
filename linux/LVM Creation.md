@@ -279,5 +279,91 @@ Normally we use vgscan -v only. After this command you can verify timestamp of /
 
 This concludes first 3 commands of VG. In next post we will see how to extend volume group, how to reduce volume group and how to export/import volume group.
 
+### vgextend
+
+Whenever there is need of extra space on mount points and new disks are added to system, related volume groups needs to accommodate this new disks. Lets say vg01 is existing VG and new disk5 is added to server then you need to use vgextend command to add this new disks into vg01. This will in turns add new free PE in existing VG vg01 and hence free space will hiked in VG.
+
+To add disks into existing VG, you need to initialize it first with pvcreate command (see part one tutorial for pvcreate). Once done disk can be used in vgextend like below :
+
+```
+vgextend /dev/vg01 /dev/disk/disk5
+Volume group "/dev/vg01" has been successfully extended.
+Volume Group configuration for /dev/vg01 has been saved in /etc/lvmconf/vg01.conf
+``` 
+
+After successful completion you can verify that new PV is added to VG by looking at vgdisplay -v vg01 output.
+
+This command can be used with below options :
+
+    -f                       Forcefully extend
+    -x                      Set allocation permissions
+    -z sparepv      Should be used ti mirroring to define spare PV
+    -g pvg_name Extend with physical volume group specified.
+
+### vgreduce
+
+Its just reverse of above command. It reduces VG by removing specified PV in command. Its bit risky to use hence extra precaution needed. You should make sure that no PE from targeted PV is being used in any LV of VG. This an be verified by lvdisplay and vgdisplay command. If no then you can use pvmove, lvremove commands to move/delete data. Once you are sure that no PE from targeted PV is being used i.e. all PEs are free form this PV then run below command to remove PV from VG.
+```
+vgreduce /dev/vg01 /dev/disk/disk5
+Volume group "/dev/vg01" has been successfully reduced.
+Volume Group configuration for /dev/vg01 has been saved in /etc/lvmconf/vg01.conf
+```
+If you are using multiple PV links then you should remove all PV paths from VG using above command.
+
+This commands allows two options :
+
+    -f                  Forcefully remove PV
+    -l pv_path Remove only specified particular PV path from VG
+
+### vgexport
+
+Using vgexport one can export all VG related information from disks into map file leaving data on disks intact. With help of this map file, same VG can be imported on another system provided all related disks are presented to this another system.
+
+Please note that, running this commands removes all VG related files from /dev directory and all its related entries in /etc/lvmtab file. This means after running vgexport, that particular VG is turns into non-existent VG for system.
+
+Before running vgexport, one has to make sure that no one is using data on LVOLs from this VG. This can be verified using fuser -cu /mount_point command. Also, VG shouldn’t be active at the time of export hence you needs to de-activate VG using vgchange.
+```
+vgchange -a n /dev/vg01
+Volume group "/dev/vg01" has been successfully changed.
+
+vgexport -v -m /tmp/vg01.map vg01
+Beginning the export process on Volume Group "/dev/vg01". 
+/dev/dsk/c0t1d0 vgexport:Volume Group “/dev/vg01” has been successfully removed.
+``` 
+
+This commands allows below options :
+
+    -p        Preview only. It wont actually exports Vg but creates map file. Useful for live VG
+    -v        Verbose mode
+    -f file Writes all PV paths to file. This file can be used as input to vgimport.
+
+### vgimport
+
+This command imports VG which been exported using above command. Map file extracted from vgimport command should be supplied as argument to vgimport. In case map file is not available, it will still try to import VG by reading LVM information lies of physical disks. In this case, list of all PV should be supplied.
+
+After vgimport successfully imports VG, note that its in inactive state. You need to activate VG to use it on system. Also, its recommended to take a configuration backup once you import new VG on system
+
+```
+# vgimport -v -m /tmp/vg01.map /dev/vg01 list_of_disk
+vgimport: Volume group “/dev/vg01” has been successfully created.
+Warning: A backup of this volume group may not exist on this machine.
+```
+Please remember to take a backup using the vgcfgbackup command after activating the volume group.
+```
+vgchange -a y vg01
+Volume group “/dev/vg01” has been successfully changed.
+
+vgcfgbackup /dev/vg01
+Volume Group configuration for /dev/vg01 has been saved in /etc/lvmconf/vg01.conf
+```
+This command can be supplied with below options :
+
+    -N Import with persistant device file names
+    -s       Scan each disks
+    -p      Preview only
+    -v       Verbose mode
+    -f file Import PV paths from file
+
+This concludes second post of part two. In next post we will be seeing how to backup and restore volume group configurations and how to change volume group states
 
 ## Part 3 : Logical Volume (lvcreate, lvdisplay, lvremove, lvextend, lvreduce, lvchange, lvsync, lvlnboot)
