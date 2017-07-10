@@ -51,10 +51,10 @@ apache2ctl -M | grep -E "geoip|rewrite"
 apt update
 apt upgrade
 apt install geoip-bin geoip-database libapache2-mod-geoip libgeoip1
-~~~
 
-### To download GeoIp Data Set
-~~~/bin/bash
+
+# To download GeoIp Data Set
+
 cd /usr/share/GeoIP/
 ls
 rm GeoIP.dat
@@ -70,7 +70,7 @@ apache2ctl -M | grep -E "geoip|rewrite"
 ~~~
 
 ### Need To update Below Content  to Enable GeoIp based data
-~~~
+```
 nano /etc/apache2/mods-enabled/geoip.conf
 <IfModule mod_geoip.c>
   GeoIPEnable On
@@ -79,7 +79,7 @@ nano /etc/apache2/mods-enabled/geoip.conf
   GeoIPDBFile /usr/share/GeoIP/GeoIPASNum.dat
 </IfModule>
 
-~~~
+```
 
 ~~~/bin/bash
 apachectl -t
