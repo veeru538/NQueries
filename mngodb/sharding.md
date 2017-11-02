@@ -232,3 +232,5 @@ WriteResult({ "nInserted" : 1 })
 After changing the featureCompatibility to “3.4,”  all the new MongoDB 3.4 features will be available.
 
 I hope this tutorial was useful in explaining upgrading to Percona Server for MongoDB 3.4.
+
+
